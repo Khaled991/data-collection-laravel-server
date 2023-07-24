@@ -25,8 +25,10 @@ class SubmitSurveyRequest extends FormRequest
             "survey_id" => 'required|integer',
             'choose_questions_responses.*.option_question_id' => 'required|integer',
             'choose_questions_responses.*.option_id' => 'required|integer',
+            'choose_questions_responses.*.text_response' => 'nullable|string',
             'multiple_select_questions_responses.*.option_question_ids' => 'required|integer',
-            'multiple_select_questions_responses.*.option_id.*' => 'required|integer',
+            'multiple_select_questions_responses.*.option.*.id' => 'required|integer',
+            'multiple_select_questions_responses.*.option.*.text_response' => 'nullable|string',
             'text_questions_responses.*.text_question_id' => 'required|integer',
             'text_questions_responses.*.text_response' => 'required|string',
         ];
