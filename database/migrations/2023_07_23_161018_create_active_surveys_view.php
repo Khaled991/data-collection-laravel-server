@@ -14,7 +14,7 @@ return new class extends Migration
     {
         DB::statement("
             CREATE VIEW active_surveys AS
-            SELECT s.id, s.title, s.description, u.name AS user_name, o.name AS organization, r.name AS region, c.name AS city, v.name AS village, u.id AS user_id
+            SELECT s.id, s.title, s.description, u.name AS user_name, o.name AS organization, r.name AS region, c.name AS city, v.name AS village, u.id AS user_id, s.created_at
             FROM users u
             JOIN user_organizations uo ON u.id = uo.user_id
             JOIN organizations o ON uo.organization_id = o.id

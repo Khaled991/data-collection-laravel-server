@@ -11,4 +11,14 @@ class SubmittedSurvey extends Model
     protected $table = 'submitted_surveys';
 
     protected $guarded = ['id'];
+
+    public function submittedSurveyTextResponses()
+    {
+        return $this->hasMany(SubmittedSurveyTextResponse::class);
+    }
+
+    public function surveyOptionResponses()
+    {
+        return $this->hasMany(SurveyOptionResponse::class);
+    }
 }

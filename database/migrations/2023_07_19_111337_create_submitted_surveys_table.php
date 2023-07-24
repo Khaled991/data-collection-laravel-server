@@ -12,7 +12,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('survey_id')->constrained();
             $table->foreignId('user_id')->constrained();
-            $table->dateTime('submitted_at');
             $table->timestamps();
         });
     }
