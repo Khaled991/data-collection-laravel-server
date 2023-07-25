@@ -29,6 +29,6 @@ class DatabaseSeeder extends Seeder
         \App\Models\TextQuestion::factory(20)->create();
         \App\Models\OptionQuestion::factory(15)->create();
         \App\Models\Option::factory(100)->create();
-        // TODO: create seeders for joining tables [region_surveys,user_regions]
+        $this->call(PivotTablesSeeder::class);
     }
 }

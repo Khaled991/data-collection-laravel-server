@@ -25,4 +25,5 @@ Route::group([
     Route::crud('option-question', 'OptionQuestionCrudController');
     Route::crud('text-question', 'TextQuestionCrudController');
     Route::crud('option', 'OptionCrudController');
+    Route::crud('detailed-submitted-surveys', 'DetailedSubmittedSurveysCrudController');
 }); // this should be the absolute last line of this file

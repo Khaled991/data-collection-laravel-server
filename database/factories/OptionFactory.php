@@ -20,6 +20,7 @@ class OptionFactory extends Factory
         return [
             'text' => fake()->sentence,
             'option_question_id' => fake()->randomElement(OptionQuestion::all()->pluck("id")),
+            'is_textfield_enabled' => fake()->boolean,
         ];
     }
 }

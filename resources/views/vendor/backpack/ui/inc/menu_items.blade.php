@@ -10,3 +10,4 @@
 <x-backpack::menu-item title="Option questions" icon="la la-question" :link="backpack_url('option-question')" />
 <x-backpack::menu-item title="Text questions" icon="la la-question-circle" :link="backpack_url('text-question')" />
 <x-backpack::menu-item title="Options" icon="la la-list-ul" :link="backpack_url('option')" />
+<x-backpack::menu-item title="Detailed submitted surveys" icon="la la-question" :link="backpack_url('detailed-submitted-surveys')" />

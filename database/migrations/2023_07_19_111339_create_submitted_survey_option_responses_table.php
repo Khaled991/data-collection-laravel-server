@@ -8,17 +8,17 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('survey_option_responses', function (Blueprint $table) {
+        Schema::create('submitted_survey_option_responses', function (Blueprint $table) {
             $table->id();
             $table->foreignId('option_id')->constrained();
-            $table->foreignId('option_question_id')->constrained();
             $table->foreignId('submitted_survey_id')->constrained();
+            $table->text("text_response")->nullable();
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('survey_option_responses');
+        Schema::dropIfExists('submitted_survey_option_responses');
     }
 };

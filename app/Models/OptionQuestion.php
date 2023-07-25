@@ -40,14 +40,7 @@ class OptionQuestion extends Model
     {
         return $this->hasMany(Option::class);
     }
-    public function surveyOptionResponse()
-    {
-        return $this->hasMany(SurveyOptionResponse::class);
-    }
-    public function surveyOtherOptionResponse()
-    {
-        return $this->hasMany(SurveyOtherOptionResponse::class);
-    }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES
