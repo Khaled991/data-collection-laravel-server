@@ -36,6 +36,10 @@ class OptionQuestion extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+    public function survey()
+    {
+        return $this->belongsTo(Survey::class);
+    }
     public function options()
     {
         return $this->hasMany(Option::class);

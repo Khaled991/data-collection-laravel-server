@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\OptionRequest;
+use App\Models\OptionQuestion;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -17,7 +18,7 @@ class OptionCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    // use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -40,7 +41,19 @@ class OptionCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::column('text');
-        CRUD::column('option_question_id');
+        $this->crud->addColumn([
+            'name' => 'is_textfield_enabled',
+            'label' => 'Is Textfield Enabled',
+            'type' => 'closure',
+            'function' => function ($entry) {
+                return $entry->is_textfield_enabled ? 'Yes' : 'No';
+            },
+        ]);
+        $this->crud->addColumn([
+            'name' => 'optionQuestion.title',
+            'label' => 'Option Question',
+            'type' => 'text',
+        ]);
         CRUD::column('created_at');
         CRUD::column('updated_at');
 
@@ -60,7 +73,15 @@ class OptionCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::field('text');
-        CRUD::field('option_question_id');
+
+        $this->crud->addField([
+            'name' => 'optionQuestion',
+            'label' => 'Option Question',
+            'attribute' => 'title',
+            'type' => 'select',
+        ]);
+        CRUD::field('is_textfield_enabled');
+
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

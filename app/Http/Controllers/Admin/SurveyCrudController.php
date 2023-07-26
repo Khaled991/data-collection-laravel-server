@@ -16,8 +16,8 @@ class SurveyCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    // use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
+    // use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -41,7 +41,14 @@ class SurveyCrudController extends CrudController
     {
         CRUD::column('title');
         CRUD::column('description');
-        CRUD::column('is_active');
+        $this->crud->addColumn([
+            'name' => 'is_active',
+            'label' => 'Is Active',
+            'type' => 'closure',
+            'function' => function ($entry) {
+                return $entry->is_active ? 'Yes' : 'No';
+            },
+        ]);
         CRUD::addColumn([
             'name' => 'created_at',
             'label' => 'Created At',

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\CityRequest;
+use App\Models\Village;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -17,7 +18,7 @@ class CityCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    // use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -41,7 +42,14 @@ class CityCrudController extends CrudController
     {
         CRUD::column('name');
         CRUD::column('region_id');
-        // CRUD::column('village_id');
+        CRUD::addColumn([
+            'name' => 'villages',
+            'label' => 'Villages',
+            'type' => 'select_multiple',
+            'entity' => 'villages',
+            'model' => Village::class,
+
+        ]);
         CRUD::addColumn([
             'name' => 'created_at',
             'label' => 'Created At',

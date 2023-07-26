@@ -25,6 +25,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'is_admin',
     ];
 
     /**
@@ -55,5 +56,16 @@ class User extends Authenticatable
     public function organizations()
     {
         return $this->belongsToMany(Organization::class, "user_organizations");
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | MUTATORS
+    |--------------------------------------------------------------------------
+    */
+    public function setPasswordAttribute($value)
+    {
+        if ($value)
+            $this->attributes['password'] = encrypt($value); // Encrypt the password before storing in the database
     }
 }

@@ -22,6 +22,7 @@ class SubmitSurveyRequest extends FormRequest
     public function rules(): array
     {
         return [
+            "user_id" => 'required|integer',
             "survey_id" => 'required|integer',
             'choose_questions_responses.*.option_question_id' => 'required|integer',
             'choose_questions_responses.*.option_id' => 'required|integer',

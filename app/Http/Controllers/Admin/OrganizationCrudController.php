@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\OrganizationRequest;
+use App\Models\Region;
+use App\Models\Village;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -17,7 +19,7 @@ class OrganizationCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    // use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -40,7 +42,22 @@ class OrganizationCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::column('name');
-        CRUD::column('region_id');
+
+        $this->crud->addColumn([
+            'name' => 'village.city.region.name',
+            'label' => 'Region',
+            'type' => 'text',
+        ]);
+        $this->crud->addColumn([
+            'name' => 'village.city.name',
+            'label' => 'City',
+            'type' => 'text',
+        ]);
+        $this->crud->addColumn([
+            'name' => 'village.name',
+            'label' => 'Village',
+            'type' => 'text',
+        ]);
         CRUD::addColumn([
             'name' => 'created_at',
             'label' => 'Created At',
@@ -67,7 +84,7 @@ class OrganizationCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::field('name');
-        CRUD::field('region_id');
+
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

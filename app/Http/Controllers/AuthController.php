@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
@@ -16,6 +15,7 @@ class AuthController extends Controller
             $user = Auth::user();
             $token = $user->createToken('token')->accessToken;
             return [
+                'user_id' => $user->id,
                 'token' => $token,
             ];
         }

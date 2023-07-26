@@ -22,7 +22,44 @@ class DetailedSubmittedSurveysResource extends JsonResource
             "city" => $this->city,
             "village" => $this->village,
             "organization" => $this->organization,
-            "textQuestions" => $this->textQuestionWithResponses,
+            "textQuestions" => TextQuestionWithResponseResource::collection($this->textQuestionWithResponses),
+            "choose_questions" => ChooseQuestionResource::collection($this->chooseQuestions),
+            "multiple_answers_questions" => $this->_prepareMultipleAnswersQuestions($this->multipleSelectQuestions),
         ];
+    }
+
+    private function _prepareMultipleAnswersQuestions($multiple_answers_questions): array
+    {
+        $transformedData = [];
+
+        foreach ($multiple_answers_questions as $item) {
+            // Check if the question already exists in the transformed data
+            $existingQuestionKey = null;
+            foreach ($transformedData as $key => $transformedItem) {
+                if ($transformedItem['question'] === $item['question']) {
+                    $existingQuestionKey = $key;
+                    break;
+                }
+            }
+
+            // Create a new answer entry for the current item
+            $answerEntry = [
+                'chosen_answer' => $item['chosen_option'],
+                'text_response' => $item['text_response'],
+            ];
+
+            // If the question doesn't exist in the transformed data, create a new entry
+            if ($existingQuestionKey === null) {
+                $transformedData[] = [
+                    'question' => $item['question'],
+                    'answers' => [$answerEntry],
+                ];
+            } else {
+                // If the question already exists, add the answer to its existing answers
+                $transformedData[$existingQuestionKey]['answers'][] = $answerEntry;
+            }
+        }
+
+        return $transformedData;
     }
 }

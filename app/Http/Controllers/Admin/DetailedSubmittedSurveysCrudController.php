@@ -15,10 +15,6 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 class DetailedSubmittedSurveysCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
     use ShowResultOperation;
 
     /**
@@ -44,22 +40,15 @@ class DetailedSubmittedSurveysCrudController extends CrudController
         // CRUD::addButtonFromView('line', 'show_result', 'show_result', 'beginning');
 
 
+        CRUD::column('id');
         CRUD::column('title');
-        // CRUD::addColumn([
-        //     'name' => 'submittedSurveyTextResponses',
-        //     'label' => 'Text Responses',
-        //     'type' => 'select_multiple',
-        //     'entity' => 'submittedSurveyTextResponses', // Relationship method name
-        //     'attribute' => 'text_response', // Attribute
-        //     'model' => SubmittedSurveyTextResponse::class,
-        //     // 'pivot' => true, // Set to true for many-to-many relationships
-        // ]);
-        // CRUD::column('created_by');
-        // CRUD::column('email');
-        // CRUD::column('region');
-        // CRUD::column('city');
-        // CRUD::column('village');
-        // CRUD::column('organization');
+        CRUD::column('created_by');
+        CRUD::column('email');
+        CRUD::column('region');
+        CRUD::column('city');
+        CRUD::column('village');
+        CRUD::column('organization');
+        CRUD::column('created_at');
 
 
         // CRUD::addColumn([
@@ -82,6 +71,7 @@ class DetailedSubmittedSurveysCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
+        CRUD::field('id');
         CRUD::field('title');
         CRUD::field('created_by');
         CRUD::field('email');

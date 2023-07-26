@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\OptionQuestionRequest;
+use App\Models\Option;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -17,7 +18,7 @@ class OptionQuestionCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    // use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -39,10 +40,18 @@ class OptionQuestionCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('survey_id');
+        CRUD::column('survey');
+        CRUD::column('title');
+        CRUD::column('description');
+        CRUD::addColumn([
+            'name' => 'options',
+            'label' => 'Options',
+            'type' => 'select_multiple',
+            'entity' => 'options',
+            'model' => Option::class,
+
+        ]);
         CRUD::column('question_type');
-        CRUD::column('is_other_option_enabled');
-        CRUD::column('is_other_option_text_enabled');
         CRUD::column('created_at');
         CRUD::column('updated_at');
 
@@ -61,10 +70,16 @@ class OptionQuestionCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::field('survey_id');
-        CRUD::field('question_type');
-        CRUD::field('is_other_option_enabled');
-        CRUD::field('is_other_option_text_enabled');
+        CRUD::field('survey');
+        CRUD::field('title');
+        CRUD::field('description');
+        $this->crud->addField([
+            'name' => 'question_type',
+            'label' => 'Question Type',
+            'type' => 'enum',
+            'options' => ['multiple' => 'Multiple', 'choose' => 'Choose'],
+
+        ]);
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

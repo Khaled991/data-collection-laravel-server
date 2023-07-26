@@ -36,6 +36,10 @@ class TextQuestion extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+    public function survey()
+    {
+        return $this->belongsTo(Survey::class);
+    }
 
     /*
     |--------------------------------------------------------------------------

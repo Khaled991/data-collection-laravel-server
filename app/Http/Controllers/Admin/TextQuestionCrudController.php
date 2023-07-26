@@ -17,7 +17,7 @@ class TextQuestionCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    // use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -39,8 +39,10 @@ class TextQuestionCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('survey_id');
-        CRUD::column('text');
+        CRUD::column('survey');
+        CRUD::column('title');
+        CRUD::column('description');
+        CRUD::addColumn(['name' => 'text', 'label' => 'Question']);
         CRUD::column('created_at');
         CRUD::column('updated_at');
 
@@ -59,7 +61,9 @@ class TextQuestionCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::field('survey_id');
+        CRUD::field('survey');
+        CRUD::field('title');
+        CRUD::field('description');
         CRUD::field('text');
 
         /**

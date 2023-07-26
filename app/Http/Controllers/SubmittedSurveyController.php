@@ -6,20 +6,23 @@ use App\Http\Requests\SubmitManySurveysRequest;
 use App\Http\Requests\SubmitSurveyRequest;
 use App\Models\SubmittedSurvey;
 use App\Models\SubmittedSurveyOptionResponse;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
 class SubmittedSurveyController extends Controller
 {
     public function storeMany(SubmitManySurveysRequest $request)
     {
-        return $request;
+        foreach ($request['data'] as $data) {
+            $surveyToSubmit = ["user_id" => $request->input("user_id"), ...$data];
+            $this->store(new SubmitSurveyRequest($surveyToSubmit));
+        }
+        return $request->all();
     }
     public function store(SubmitSurveyRequest $request)
     {
         $requestData = $request->all();
-        $user_id = 2;
-        //TODO: fix auth
-        // $user_id = Auth::id();
+        $user_id =  $request->input("user_id");
 
         $submittedSurvey = SubmittedSurvey::create([
             'survey_id' => $requestData['survey_id'],

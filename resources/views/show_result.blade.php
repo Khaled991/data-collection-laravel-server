@@ -1,3 +1,4 @@
+</html>
 <!DOCTYPE html>
 <html>
 
@@ -35,11 +36,6 @@
     th,
     td {
       border: 1px solid #ccc;
-
-    }
-
-    th,
-    td {
       padding: 10px;
       text-align: left;
     }
@@ -59,107 +55,108 @@
       text-align: right;
     }
   </style>
-  <title>{{ $title }}</title>
+  <title>{{ $data['title'] }}</title>
 </head>
 
 <body dir="rtl">
 
-  <h1>{{ $title }}</h1>
+  <h1>{{ $data['title'] }}</h1>
   <table dir="rtl">
     <tr>
       <th dir="rtl">اسم المعبئ</th>
-      <td dir="rtl">{{ $name }}</td>
+      <td dir="rtl">{{ $data['name'] }}</td>
     </tr>
     <tr>
       <th dir="rtl">البريد الالكتروني للمعبئ</th>
-      <td dir="rtl">{{ $email }}</td>
+      <td dir="rtl">{{ $data['email'] }}</td>
     </tr>
     <tr>
       <th dir="rtl">المنطقة</th>
-      <td dir="rtl">{{ $region }}</td>
+      <td dir="rtl">{{ $data['region'] }}</td>
     </tr>
     <tr>
       <th dir="rtl">المدينة</th>
-      <td dir="rtl">{{ $city }}</td>
+      <td dir="rtl">{{ $data['city'] }}</td>
     </tr>
     <tr>
       <th dir="rtl">القرية</th>
-      <td dir="rtl">{{ $village }}</td>
+      <td dir="rtl">{{ $data['village'] }}</td>
     </tr>
     <tr>
       <th dir="rtl">المنظمة</th>
-      <td dir="rtl">{{ $organization }}</td>
+      <td dir="rtl">{{ $data['organization'] }}</td>
     </tr>
   </table>
 
+  @if(count($data['textQuestions']))
   <h2>الأسئلة المقالية</h2>
   <table>
-    @foreach($textQuestions as $textQuestion)
+    @foreach($data['textQuestions'] as $textQuestion)
     <tr>
-      <td colspan="3" dir="rtl"><strong>{{ $textQuestion['questionTitle'] }}</strong></td>
+      <td dir="rtl">السؤال</td>
+      <td colspan="2" dir="rtl">{{ $textQuestion['question'] }}</td>
     </tr>
     <tr>
-      <td colspan="2" dir="rtl">{{ $textQuestion['question'] }}</td>
+      <td dir="rtl">الإجابة</td>
       <td dir="rtl">{{ $textQuestion['answer'] }}</td>
     </tr>
     @endforeach
   </table>
+  @endif
 
+  @if(count($data['choose_questions']))
   <h2>أسئلة الاختيار من متعدد</h2>
   <table>
-    @foreach($multipleChoiceQuestions as $multipleChoiceQuestion)
+    @foreach($data['choose_questions'] as $multipleChoiceQuestion)
     <tr>
-      <td colspan="2" dir="rtl"><strong>{{ $multipleChoiceQuestion['questionTitle'] }}</strong></td>
-    </tr>
-    <tr>
+      <td dir="rtl">السؤال</td>
       <td colspan="2" dir="rtl">{{ $multipleChoiceQuestion['question'] }}</td>
     </tr>
     <tr>
       <td dir="rtl">الإجابة</td>
-      <td dir="rtl">{{ $multipleChoiceQuestion['answer'] }}</td>
+      <td dir="rtl">{{ $multipleChoiceQuestion['chosen_option'] }}</td>
     </tr>
+    @if ($multipleChoiceQuestion['text_response'])
     <tr>
       <td dir="rtl">التوضيح</td>
-      <td dir="rtl">{{ $multipleChoiceQuestion['clarification'] }}</td>
+      <td dir="rtl">{{ $multipleChoiceQuestion['text_response'] }}</td>
     </tr>
-    <tr>
-      <td dir="rtl">الخيارات</td>
-      <td dir="rtl">
-        <ul>
-          @foreach($multipleChoiceQuestion['options'] as $option)
-          <li>{{ $option }}</li>
-          @endforeach
-        </ul>
-      </td>
-    </tr>
+    @endif
     @endforeach
   </table>
-
+  @endif
+  @if(count($data['multiple_answers_questions']))
   <h2>أسئلة متعددة الاجابات</h2>
   <table>
-    @foreach($multipleAnswersQuestions as $multipleAnswersQuestion)
+    @foreach($data['multiple_answers_questions'] as $multipleAnswersQuestion)
     <tr>
-      <td colspan="2" dir="rtl"><strong>{{ $multipleAnswersQuestion['questionTitle'] }}</strong></td>
-    </tr>
-    <tr>
+      <td dir="rtl">السؤال</td>
       <td colspan="2" dir="rtl">{{ $multipleAnswersQuestion['question'] }}</td>
     </tr>
     <tr>
-      <td dir="rtl">التوضيح</td>
-      <td dir="rtl">{{ $multipleAnswersQuestion['clarification'] }}</td>
+
     </tr>
     <tr>
-      <td dir="rtl">الإجابات</td>
+      <td dir="rtl">الإجابة</td>
       <td dir="rtl">
         <ul>
           @foreach($multipleAnswersQuestion['answers'] as $answer)
-          <li>{{ $answer }}</li>
+          <li>{{ $answer['chosen_answer'] }}</li>
           @endforeach
         </ul>
       </td>
     </tr>
+    @if($multipleAnswersQuestion['answers'][0]['text_response'])
+    <tr>
+      <td dir="rtl">التوضيح</td>
+      <td dir="rtl">{{ $multipleAnswersQuestion['answers'][0]['text_response'] }}</td>
+    </tr>
+    @endif
+
     @endforeach
   </table>
+  @endif
+
 </body>
 
 </html>
