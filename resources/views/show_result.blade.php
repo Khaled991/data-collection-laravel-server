@@ -137,7 +137,7 @@
 
     </tr>
     <tr>
-      <td dir="rtl">الإجابة</td>
+      <td dir="rtl">الإجابات</td>
       <td dir="rtl">
         <ul>
           @foreach($multipleAnswersQuestion['answers'] as $answer)
