@@ -48,9 +48,6 @@ class RegionCrudController extends CrudController
             'attribute' => 'name', // Assuming 'name' is the column name for the city name
             'model' => City::class, // The City model class
             // 'pivot' => true, // Set to true for many-to-many relationships
-            'wrapper' => [
-                'class' => 'form-group col-md-6',
-            ],
         ]);
         CRUD::addColumn([
             'name' => 'created_at',

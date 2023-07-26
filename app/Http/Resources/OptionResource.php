@@ -17,6 +17,7 @@ class OptionResource extends JsonResource
         return [
             "id" => $this->id,
             "text" => $this->text,
+            "is_textfield_enabled" => $this->is_textfield_enabled,
         ];
     }
 }

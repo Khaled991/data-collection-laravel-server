@@ -19,8 +19,6 @@ class OptionQuestionResource extends JsonResource
             "title" => $this->title,
             "description" => $this->description,
             "question_type" => $this->question_type,
-            "is_other_option_enabled" => $this->is_other_option_enabled,
-            "is_other_option_text_enabled" => $this->is_other_option_text_enabled,
             "options" => OptionResource::collection($this->options),
         ];
     }

@@ -18,7 +18,6 @@ class SurveyController extends Controller
      */
     public function index()
     {
-        // TODO: find for user based on region
         return ActiveSurvey::where(["user_id" => Auth::id()])
             ->get(
                 ["id", "title", "created_at"]

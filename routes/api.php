@@ -12,6 +12,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('survey', [SurveyController::class, 'index']);
     Route::get('survey/{id}', [SurveyController::class, 'show']);
     Route::get('survey-question/{surveyId}', [SurveyController::class, 'showQuestions']);
-    Route::post('submit-survey', [SubmittedSurveyController::class, 'store']);
     Route::get('user/{id}', [UserController::class, 'show']);
 });
+Route::post('submit-survey', [SubmittedSurveyController::class, 'store']);
+Route::post('submit-many-surveys', [SubmittedSurveyController::class, 'storeMany']);

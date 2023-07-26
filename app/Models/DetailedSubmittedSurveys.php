@@ -11,10 +11,14 @@ class DetailedSubmittedSurveys extends Model
     use CrudTrait;
     use HasFactory;
 
-    protected $primaryKey = "submitted_survey_id";
+    // protected $primaryKey = "submitted_survey_id";
 
     public function submittedSurveyTextResponses()
     {
         return $this->hasMany(SubmittedSurveyTextResponse::class, "submitted_survey_id", "submitted_survey_id");
+    }
+    public function textQuestionWithResponses()
+    {
+        return $this->hasMany(TextQuestionWithResponse::class, "submitted_survey_id", "submitted_survey_id");
     }
 }

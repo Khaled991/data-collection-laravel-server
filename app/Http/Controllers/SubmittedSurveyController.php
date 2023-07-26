@@ -2,22 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SubmitManySurveysRequest;
 use App\Http\Requests\SubmitSurveyRequest;
 use App\Models\SubmittedSurvey;
 use App\Models\SubmittedSurveyOptionResponse;
-use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class SubmittedSurveyController extends Controller
 {
-
+    public function storeMany(SubmitManySurveysRequest $request)
+    {
+        return $request;
+    }
     public function store(SubmitSurveyRequest $request)
     {
         $requestData = $request->all();
+        $user_id = 2;
+        //TODO: fix auth
+        // $user_id = Auth::id();
 
         $submittedSurvey = SubmittedSurvey::create([
             'survey_id' => $requestData['survey_id'],
-            'user_id' => Auth::id(),
+            'user_id' => $user_id,
         ]);
 
         $chooseResponses = $requestData['choose_questions_responses'];
@@ -30,8 +36,7 @@ class SubmittedSurveyController extends Controller
 
         $textResponses = $requestData['text_questions_responses'];
         $submittedSurvey->submittedSurveyTextResponses()->createMany($textResponses);
-
-        return response($submittedSurvey, Response::HTTP_CREATED);
+        return response(null, Response::HTTP_CREATED);
     }
 
 
@@ -42,7 +47,7 @@ class SubmittedSurveyController extends Controller
             $optionResponses = [];
             foreach ($response['option'] as $option) {
                 $optionResponses[] = new SubmittedSurveyOptionResponse([
-                    'option_question_id' => $response['option_question_ids'],
+                    'option_question_id' => $response['option_question_id'],
                     'option_id' => $option['id'],
                     'text_response' => $option['text_response'],
                 ]);

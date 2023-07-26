@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SubmittedSurveyResultController;
 use Illuminate\Support\Facades\Route;
 
 // --------------------------
@@ -26,4 +27,5 @@ Route::group([
     Route::crud('text-question', 'TextQuestionCrudController');
     Route::crud('option', 'OptionCrudController');
     Route::crud('detailed-submitted-surveys', 'DetailedSubmittedSurveysCrudController');
+    Route::get('detailed-submitted-surveys/{id}/submitted-survey-result', [SubmittedSurveyResultController::class, 'submittedSurveyResult']);
 }); // this should be the absolute last line of this file

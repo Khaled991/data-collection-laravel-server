@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\DetailedSubmittedSurveysRequest;
+use App\Http\Controllers\Admin\Operations\ShowResultOperation;
+use App\Models\SubmittedSurveyTextResponse;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -18,6 +19,7 @@ class DetailedSubmittedSurveysCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use ShowResultOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -39,25 +41,26 @@ class DetailedSubmittedSurveysCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        // CRUD::addButtonFromView('line', 'show_result', 'show_result', 'beginning');
+
+
         CRUD::column('title');
-        CRUD::addColumn([
-            'name' => 'submittedSurveyTextResponses',
-            'label' => 'Text Responses',
-            'type' => 'select_multiple',
-            'entity' => 'submittedSurveyTextResponses', // Relationship method name
-            'attribute' => 'text_response', // Attribute
-            'model' => SubmittedSurveyTextResponse::class,
-            // 'pivot' => true, // Set to true for many-to-many relationships
-            'wrapper' => [
-                'class' => 'form-group col-md-6',
-            ],
-        ]);
-        CRUD::column('created_by');
-        CRUD::column('email');
-        CRUD::column('region');
-        CRUD::column('city');
-        CRUD::column('village');
-        CRUD::column('organization');
+        // CRUD::addColumn([
+        //     'name' => 'submittedSurveyTextResponses',
+        //     'label' => 'Text Responses',
+        //     'type' => 'select_multiple',
+        //     'entity' => 'submittedSurveyTextResponses', // Relationship method name
+        //     'attribute' => 'text_response', // Attribute
+        //     'model' => SubmittedSurveyTextResponse::class,
+        //     // 'pivot' => true, // Set to true for many-to-many relationships
+        // ]);
+        // CRUD::column('created_by');
+        // CRUD::column('email');
+        // CRUD::column('region');
+        // CRUD::column('city');
+        // CRUD::column('village');
+        // CRUD::column('organization');
+
 
         // CRUD::addColumn([
         //     'name' => 'submittedSurveyTextResponses.id',
@@ -86,7 +89,6 @@ class DetailedSubmittedSurveysCrudController extends CrudController
         CRUD::field('city');
         CRUD::field('village');
         CRUD::field('organization');
-
         /**
          * Fields can be defined using the fluent syntax or array syntax:
          * - CRUD::field('price')->type('number');
