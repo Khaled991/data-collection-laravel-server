@@ -57,6 +57,11 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Organization::class, "user_organizations");
     }
+    //TODO:Contenue
+    public function regions()
+    {
+        return $this->belongsToMany(Region::class);
+    }
 
     /*
     |--------------------------------------------------------------------------

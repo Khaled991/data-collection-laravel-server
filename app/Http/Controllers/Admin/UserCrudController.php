@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\UserRequest;
+use App\Models\Organization;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -50,6 +51,14 @@ class UserCrudController extends CrudController
             },
         ]);
         CRUD::addColumn([
+            'name' => 'organizations',
+            'label' => 'Organizations',
+            'type' => 'select_multiple',
+            'entity' => 'organizations',
+            'model' => Organization::class,
+
+        ]);
+        CRUD::addColumn([
             'name' => 'created_at',
             'label' => 'Created At',
             'type' => 'datetime',
@@ -80,6 +89,15 @@ class UserCrudController extends CrudController
         CRUD::field('name');
         CRUD::field('email');
         CRUD::field('password');
+        CRUD::field([   // relationship
+            'name' => 'organizations', // the method on your model that defines the relationship
+            'type' => "relationship",
+            'label' => "Organizations",
+            'attribute' => "name", // attribute on model that is shown to user
+            'placeholder' => "Select an Organization", // placeholder for the select2 input
+
+        ]);
+
         CRUD::field('is_admin');
 
         /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\SurveyRequest;
+use App\Models\Region;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -50,6 +51,14 @@ class SurveyCrudController extends CrudController
             },
         ]);
         CRUD::addColumn([
+            'name' => 'regions',
+            'label' => 'Regions',
+            'type' => 'select_multiple',
+            'entity' => 'regions',
+            'model' => Region::class,
+
+        ]);
+        CRUD::addColumn([
             'name' => 'created_at',
             'label' => 'Created At',
             'type' => 'datetime',
@@ -76,6 +85,14 @@ class SurveyCrudController extends CrudController
     {
         CRUD::field('title');
         CRUD::field('description');
+        CRUD::field([   // relationship
+            'name' => 'regions', // the method on your model that defines the relationship
+            'type' => "relationship",
+            'label' => "Regions",
+            'attribute' => "name", // attribute on model that is shown to user
+            'placeholder' => "Select a Region", // placeholder for the select2 input
+
+        ]);
         CRUD::field('is_active');
 
         /**
