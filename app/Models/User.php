@@ -63,9 +63,9 @@ class User extends Authenticatable
     | MUTATORS
     |--------------------------------------------------------------------------
     */
-    public function setPasswordAttribute($value)
-    {
-        if ($value)
-            $this->attributes['password'] = encrypt($value); // Encrypt the password before storing in the database
-    }
+    // public function setPasswordAttribute($value)
+    // {
+    //     if ($value)
+    //         $this->attributes['password'] = encrypt($value); // Encrypt the password before storing in the database
+    // }
 }

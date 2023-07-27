@@ -27,6 +27,7 @@ class UserRequest extends FormRequest
         return [
             'name' => 'required|min:5|max:255',
             'email' => 'max:255',
+            'password' => 'required',
             'is_admin' => 'required|boolean'
         ];
     }
