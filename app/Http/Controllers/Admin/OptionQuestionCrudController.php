@@ -70,7 +70,12 @@ class OptionQuestionCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::field('survey');
+        $this->crud->addField([
+            'name' => 'survey',
+            'label' => 'Survey',
+            'attribute' => 'title',
+            'type' => 'select',
+        ]);
         CRUD::field('title');
         CRUD::field('description');
         $this->crud->addField([
