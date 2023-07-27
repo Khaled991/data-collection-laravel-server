@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\OrganizationRequest;
 use App\Models\Region;
+use App\Models\User;
 use App\Models\Village;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
@@ -59,6 +60,15 @@ class OrganizationCrudController extends CrudController
             'type' => 'text',
         ]);
         CRUD::addColumn([
+            'name' => 'users',
+            'label' => 'Users',
+            'type' => 'select_multiple',
+            'entity' => 'users',
+            'model' => User::class,
+
+        ]);
+
+        CRUD::addColumn([
             'name' => 'created_at',
             'label' => 'Created At',
             'type' => 'datetime',
@@ -84,7 +94,14 @@ class OrganizationCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::field('name');
+        CRUD::field([   // relationship
+            'name' => 'users', // the method on your model that defines the relationship
+            'type' => "relationship",
+            'label' => "Users",
+            'attribute' => "name", // attribute on model that is shown to user
+            'placeholder' => "Select a User", // placeholder for the select2 input
 
+        ]);
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
