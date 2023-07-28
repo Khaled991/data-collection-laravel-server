@@ -43,21 +43,12 @@ class OrganizationCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::column('name');
-
-        $this->crud->addColumn([
-            'name' => 'village.city.region.name',
-            'label' => 'Region',
-            'type' => 'text',
-        ]);
-        $this->crud->addColumn([
-            'name' => 'village.city.name',
-            'label' => 'City',
-            'type' => 'text',
-        ]);
-        $this->crud->addColumn([
-            'name' => 'village.name',
-            'label' => 'Village',
-            'type' => 'text',
+        CRUD::addColumn([
+            'name' => 'villages',
+            'label' => 'Villages',
+            'type' => 'select_multiple',
+            'entity' => 'villages',
+            'model' => Village::class,
         ]);
         CRUD::addColumn([
             'name' => 'users',
@@ -65,7 +56,6 @@ class OrganizationCrudController extends CrudController
             'type' => 'select_multiple',
             'entity' => 'users',
             'model' => User::class,
-
         ]);
 
         CRUD::addColumn([
@@ -99,8 +89,7 @@ class OrganizationCrudController extends CrudController
             'type' => "relationship",
             'label' => "Villages",
             'attribute' => "name", // attribute on model that is shown to user
-            'placeholder' => "Select a Village", // placeholder for the select2 input
-
+            'placeholder' => "Select a village", // placeholder for the select2 input
         ]);
         CRUD::field([   // relationship
             'name' => 'users', // the method on your model that defines the relationship
