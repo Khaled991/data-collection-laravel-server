@@ -102,6 +102,7 @@ class OrganizationCrudController extends CrudController
             'placeholder' => "Select a User", // placeholder for the select2 input
 
         ]);
+        CRUD::field('village_id');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
