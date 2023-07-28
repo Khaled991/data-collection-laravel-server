@@ -15,17 +15,18 @@ return new class extends Migration
         DB::statement("DROP VIEW active_surveys;");
         DB::statement(
             "
-            SELECT s.id, s.title, s.description, u.name AS user_name, o.name AS organization, r.name AS region, c.name AS city, v.name AS village, u.id AS user_id, s.created_at
-                    FROM users u
-                    JOIN user_organizations uo ON u.id = uo.user_id
-                    JOIN organizations o ON uo.organization_id = o.id
-                    JOIN village_organizations vo ON vo.organization_id = o.id
-                    JOIN villages v ON vo.village_id = v.id
-                    JOIN cities c ON v.city_id = c.id
-                    JOIN regions r ON c.region_id = r.id
-                    JOIN region_surveys rs ON r.id = rs.region_id
-                    JOIN surveys s ON rs.survey_id = s.id
-                    WHERE s.is_active = 1;
+            CREATE VIEW active_surveys AS
+                SELECT s.id, s.title, s.description, u.name AS user_name, o.name AS organization, r.name AS region, c.name AS city, v.name AS village, u.id AS user_id, s.created_at
+                FROM users u
+                JOIN user_organizations uo ON u.id = uo.user_id
+                JOIN organizations o ON uo.organization_id = o.id
+                JOIN village_organizations vo ON vo.organization_id = o.id
+                JOIN villages v ON vo.village_id = v.id
+                JOIN cities c ON v.city_id = c.id
+                JOIN regions r ON c.region_id = r.id
+                JOIN region_surveys rs ON r.id = rs.region_id
+                JOIN surveys s ON rs.survey_id = s.id
+                WHERE s.is_active = 1;
             "
         );
     }
