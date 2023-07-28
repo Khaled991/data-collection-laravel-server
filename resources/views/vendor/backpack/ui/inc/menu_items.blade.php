@@ -4,8 +4,8 @@
 <x-backpack::menu-item title="Users" icon="la la-user" :link="backpack_url('user')" />
 <x-backpack::menu-item title="Regions" icon="la la-map-marker" :link="backpack_url('region')" />
 <x-backpack::menu-item title="Cities" icon="la la-city" :link="backpack_url('city')" />
-<x-backpack::menu-item title="Organizations" icon="la la-building" :link="backpack_url('organization')" />
 <x-backpack::menu-item title="Villages" icon="la la-igloo" :link="backpack_url('village')" />
+<x-backpack::menu-item title="Organizations" icon="la la-building" :link="backpack_url('organization')" />
 <x-backpack::menu-item title="Surveys" icon="la la-clipboard-list" :link="backpack_url('survey')" />
 <x-backpack::menu-item title="Option questions" icon="la la-question" :link="backpack_url('option-question')" />
 <x-backpack::menu-item title="Options" icon="la la-list-ul" :link="backpack_url('option')" />
