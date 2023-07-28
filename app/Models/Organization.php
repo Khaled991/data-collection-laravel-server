@@ -36,9 +36,9 @@ class Organization extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function village()
+    public function villages()
     {
-        return $this->belongsTo(Village::class);
+        return $this->belongsToMany(Village::class);
     }
 
     public function users()

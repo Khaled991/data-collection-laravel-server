@@ -42,7 +42,7 @@ class Village extends Model
     }
     public function organizations()
     {
-        return $this->hasMany(Organization::class);
+        return $this->belongsToMany(Organization::class);
     }
     /*
     |--------------------------------------------------------------------------

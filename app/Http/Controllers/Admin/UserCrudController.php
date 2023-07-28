@@ -56,7 +56,6 @@ class UserCrudController extends CrudController
             'type' => 'select_multiple',
             'entity' => 'organizations',
             'model' => Organization::class,
-
         ]);
         CRUD::addColumn([
             'name' => 'created_at',

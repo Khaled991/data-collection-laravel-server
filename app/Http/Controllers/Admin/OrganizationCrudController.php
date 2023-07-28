@@ -95,6 +95,14 @@ class OrganizationCrudController extends CrudController
     {
         CRUD::field('name');
         CRUD::field([   // relationship
+            'name' => 'villages', // the method on your model that defines the relationship
+            'type' => "relationship",
+            'label' => "Villages",
+            'attribute' => "name", // attribute on model that is shown to user
+            'placeholder' => "Select a Village", // placeholder for the select2 input
+
+        ]);
+        CRUD::field([   // relationship
             'name' => 'users', // the method on your model that defines the relationship
             'type' => "relationship",
             'label' => "Users",
@@ -102,7 +110,6 @@ class OrganizationCrudController extends CrudController
             'placeholder' => "Select a User", // placeholder for the select2 input
 
         ]);
-        CRUD::field('village_id');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
