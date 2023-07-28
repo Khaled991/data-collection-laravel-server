@@ -38,7 +38,7 @@ class Organization extends Model
     */
     public function villages()
     {
-        return $this->belongsToMany(Village::class);
+        return $this->belongsToMany(Village::class, "village_organizations");
     }
 
     public function users()
