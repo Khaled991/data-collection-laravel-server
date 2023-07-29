@@ -4,7 +4,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 10.15.0.
+ * Generated for Laravel 10.16.0.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -2773,6 +2773,18 @@
         {
                         /** @var \Illuminate\View\Compilers\BladeCompiler $instance */
                         return $instance->getCustomDirectives();
+        }
+                    /**
+         * Indicate that the following callable should be used to prepare strings for compilation.
+         *
+         * @param callable $callback
+         * @return \Illuminate\View\Compilers\BladeCompiler 
+         * @static 
+         */ 
+        public static function prepareStringsForCompilationUsing($callback)
+        {
+                        /** @var \Illuminate\View\Compilers\BladeCompiler $instance */
+                        return $instance->prepareStringsForCompilationUsing($callback);
         }
                     /**
          * Register a new precompiler.
@@ -18397,6 +18409,18 @@
         {
                         /** @var \Backpack\Basset\BassetManager $instance */
                         $instance->echoJs($path, $attributes);
+        }
+                    /**
+         * Generates the asset path.
+         *
+         * @param string $path
+         * @return string 
+         * @static 
+         */ 
+        public static function assetPath($path)
+        {
+                        /** @var \Backpack\Basset\BassetManager $instance */
+                        return $instance->assetPath($path);
         }
                     /**
          * Returns the asset path.

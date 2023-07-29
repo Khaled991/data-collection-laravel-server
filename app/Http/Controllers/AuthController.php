@@ -13,11 +13,14 @@ class AuthController extends Controller
         if (Auth::attempt($request->only(['email', 'password']))) {
             /** @var \App\Models\User $user */
             $user = Auth::user();
-            $token = $user->createToken('token')->accessToken;
-            return [
-                'user_id' => $user->id,
-                'token' => $token,
-            ];
+            if (! $user->is_admin) {
+                $token = $user->createToken('token')->accessToken;
+
+                return [
+                    'user_id' => $user->id,
+                    'token' => $token,
+                ];
+            }
         }
 
         return response(['error' => 'Invalid Credentials!'], Response::HTTP_UNAUTHORIZED);
