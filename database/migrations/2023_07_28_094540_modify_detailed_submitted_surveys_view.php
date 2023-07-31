@@ -1,9 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
@@ -12,9 +10,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        DB::statement("DROP VIEW detailed_submitted_surveys;");
+        DB::statement('DROP VIEW detailed_submitted_surveys;');
         DB::statement(
-            "
+            '
             CREATE VIEW detailed_submitted_surveys AS
 
             SELECT
@@ -35,10 +33,10 @@ return new class extends Migration
             JOIN regions r ON rs.region_id = r.id
             JOIN cities c ON r.id = c.region_id
             JOIN villages v ON c.id = v.city_id
-            JOIN organizations o ON v.id = o.village_id
+            JOIN village_organizations vo ON vo.village_id = v.id
+            JOIN organizations o ON v.id = vo.village_id
             GROUP BY ss.id, s.id, u.name, u.email, s.title,ss.created_at;
-
-            "
+            '
         );
     }
 
@@ -47,9 +45,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        DB::statement("DROP VIEW detailed_submitted_surveys;");
+        DB::statement('DROP VIEW detailed_submitted_surveys;');
         DB::statement(
-            "
+            '
             CREATE VIEW detailed_submitted_surveys AS
 
             SELECT
@@ -73,7 +71,7 @@ return new class extends Migration
             JOIN village_organizations vo ON v.id = vo.village_id
             JOIN organizations o ON vo.organization_id = o.id
             GROUP BY ss.id, s.id, u.name, u.email, s.title,ss.created_at;
-            "
+            '
         );
     }
 };

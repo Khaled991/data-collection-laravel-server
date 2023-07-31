@@ -15,8 +15,8 @@ class SurveyQuestionsResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            "option_questions" => OptionQuestionResource::collection($this->optionQuestions),
-            "text_questions" => TextQuestionResource::collection($this->textQuestions),
+            'option_questions' => OptionQuestionResource::collection($this->activeOptionQuestions),
+            'text_questions' => TextQuestionResource::collection($this->activeTextQuestions),
         ];
     }
 }

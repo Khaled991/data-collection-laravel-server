@@ -38,7 +38,7 @@ class Survey extends Model
     */
     public function regions()
     {
-        return $this->belongsToMany(Region::class, "region_surveys");
+        return $this->belongsToMany(Region::class, 'region_surveys');
     }
 
     public function submittedSurveys()
@@ -51,9 +51,19 @@ class Survey extends Model
         return $this->hasMany(TextQuestion::class);
     }
 
+    public function activeTextQuestions()
+    {
+        return $this->textQuestions()->where(['is_active' => true]);
+    }
+
     public function optionQuestions()
     {
         return $this->hasMany(OptionQuestion::class);
+    }
+
+    public function activeOptionQuestions()
+    {
+        return $this->optionQuestions()->where(['is_active' => true]);
     }
     /*
     |--------------------------------------------------------------------------
