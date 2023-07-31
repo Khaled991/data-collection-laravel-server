@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Region::factory(5)->create();
         \App\Models\City::factory(30)->create();
-        \App\Models\Village::factory(50)->create();
+        \App\Models\Village::factory(10)->create();
         \App\Models\Organization::factory(10)->create();
         \App\Models\Survey::factory(10)->create();
         \App\Models\TextQuestion::factory(20)->create();

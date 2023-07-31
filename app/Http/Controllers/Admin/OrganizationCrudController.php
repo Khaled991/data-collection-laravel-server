@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\OrganizationRequest;
-use App\Models\Region;
 use App\Models\User;
 use App\Models\Village;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
@@ -11,7 +9,7 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
  * Class OrganizationCrudController
- * @package App\Http\Controllers\Admin
+ *
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
 class OrganizationCrudController extends CrudController
@@ -24,20 +22,22 @@ class OrganizationCrudController extends CrudController
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
-     * 
+     *
      * @return void
      */
     public function setup()
     {
+        CRUD::enableExportButtons();
         CRUD::setModel(\App\Models\Organization::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/organization');
+        CRUD::setRoute(config('backpack.base.route_prefix').'/organization');
         CRUD::setEntityNameStrings('organization', 'organizations');
     }
 
     /**
      * Define what happens when the List operation is loaded.
-     * 
+     *
      * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
+     *
      * @return void
      */
     protected function setupListOperation()
@@ -71,14 +71,15 @@ class OrganizationCrudController extends CrudController
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']); 
+         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']);
          */
     }
 
     /**
      * Define what happens when the Create operation is loaded.
-     * 
+     *
      * @see https://backpackforlaravel.com/docs/crud-operation-create
+     *
      * @return void
      */
     protected function setupCreateOperation()
@@ -86,31 +87,32 @@ class OrganizationCrudController extends CrudController
         CRUD::field('name');
         CRUD::field([   // relationship
             'name' => 'villages', // the method on your model that defines the relationship
-            'type' => "relationship",
-            'label' => "Villages",
-            'attribute' => "name", // attribute on model that is shown to user
-            'placeholder' => "Select a village", // placeholder for the select2 input
+            'type' => 'relationship',
+            'label' => 'Villages',
+            'attribute' => 'name', // attribute on model that is shown to user
+            'placeholder' => 'Select a village', // placeholder for the select2 input
         ]);
         CRUD::field([   // relationship
             'name' => 'users', // the method on your model that defines the relationship
-            'type' => "relationship",
-            'label' => "Users",
-            'attribute' => "name", // attribute on model that is shown to user
-            'placeholder' => "Select a User", // placeholder for the select2 input
+            'type' => 'relationship',
+            'label' => 'Users',
+            'attribute' => 'name', // attribute on model that is shown to user
+            'placeholder' => 'Select a User', // placeholder for the select2 input
 
         ]);
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
          * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
+         * - CRUD::addField(['name' => 'price', 'type' => 'number']));
          */
     }
 
     /**
      * Define what happens when the Update operation is loaded.
-     * 
+     *
      * @see https://backpackforlaravel.com/docs/crud-operation-update
+     *
      * @return void
      */
     protected function setupUpdateOperation()

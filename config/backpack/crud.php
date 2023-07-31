@@ -12,7 +12,7 @@ return [
     |-------------------
     */
 
-    'show_translatable_field_icon'     => true,
+    'show_translatable_field_icon' => true,
     'translatable_field_icon_position' => 'right', // left or right
 
     'locales' => [
@@ -42,7 +42,7 @@ return [
         // "ar_TN" => "Arabic (Tunisia)",
         // "ar_AE" => "Arabic (United Arab Emirates)",
         // "ar_YE" => "Arabic (Yemen)",
-        "ar" => "Arabic",
+        'ar' => 'Arabic',
         // "hy_AM" => "Armenian (Armenia)",
         // "hy" => "Armenian",
         // "as_IN" => "Assamese (India)",
@@ -469,8 +469,8 @@ return [
     // the uploaders for the `withFiles` macro
     'uploaders' => [
         'withFiles' => [
-            'image'           => \Backpack\CRUD\app\Library\Uploaders\SingleBase64Image::class,
-            'upload'          => \Backpack\CRUD\app\Library\Uploaders\SingleFile::class,
+            'image' => \Backpack\CRUD\app\Library\Uploaders\SingleBase64Image::class,
+            'upload' => \Backpack\CRUD\app\Library\Uploaders\SingleFile::class,
             'upload_multiple' => \Backpack\CRUD\app\Library\Uploaders\MultipleFiles::class,
         ],
     ],

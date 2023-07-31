@@ -19,7 +19,7 @@ class SurveyFactory extends Factory
         return [
             'title' => fake()->sentence,
             'description' => fake()->paragraph,
-            'is_active' => fake()->boolean,
+            'is_active' => true,
         ];
     }
 }

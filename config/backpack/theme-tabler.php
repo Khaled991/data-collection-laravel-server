@@ -112,7 +112,6 @@ return [
          * bg-indigo, bg-purple, bg-pink, bg-red, bg-orange, bg-yellow, bg-green, bg-teal, bg-cyan, bg-white.
          *
          * For links to be visible on different background colors use: "navbar-dark", "navbar-light".
-         *
          */
         'topHeader' => null,
 
@@ -157,7 +156,7 @@ return [
         'tableWrapper' => null,
     ],
 
-    /**
+/**
  * 4th Layer of customization
  *
  * Alright, if nothing so far met your need, then you still have an easy way to build

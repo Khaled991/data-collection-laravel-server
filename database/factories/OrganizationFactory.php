@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Village;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,7 +18,6 @@ class OrganizationFactory extends Factory
     {
         return [
             'name' => fake()->city,
-            "village_id" => fake()->randomElement(Village::all()->pluck("id")),
         ];
     }
 }
