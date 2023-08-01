@@ -34,7 +34,7 @@ return [
     */
 
     // Date & Datetime Format Syntax: https://carbon.nesbot.com/docs/#api-localization
-    'default_date_format'     => 'D MMM YYYY',
+    'default_date_format' => 'D MMM YYYY',
     'default_datetime_format' => 'D MMM YYYY, HH:mm',
 
     // Direction, according to language
@@ -63,7 +63,7 @@ return [
     'home_link' => '/admin/dashboard',
 
     // Menu logo. You can replace this with an <img> tag if you have a logo.
-    'project_logo'   => 'Admin Panel',
+    'project_logo' => 'Admin Panel',
 
     // Show / hide breadcrumbs on admin panel pages.
     'breadcrumbs' => true,
@@ -73,10 +73,10 @@ return [
     // ------
 
     // Developer or company name. Shown in footer.
-    'developer_name' => 'AK',
+    'developer_name' => 'Tecnox',
 
     // Developer website. Link in footer. Type false if you want to hide it.
-    'developer_link' => '#',
+    'developer_link' => 'https://tecnox.io',
 
     // Show powered by Laravel Backpack in the footer? true/false
     'show_powered_by' => false,
